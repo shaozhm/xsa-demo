@@ -1,0 +1,11 @@
+{
+	"routes": [
+		{
+			"source": "/xsodata/(.*)",
+			"target": "$1",
+			"destination": "xsjs-backend",
+			"authenticationType": "xsuaa"
+		}
+
+	]
+}

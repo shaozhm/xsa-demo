@@ -1,0 +1,14 @@
+{
+  "name": "zhimin-web",
+  "description": "Web Moduele of SHINE",
+  "version": "1.7.6",
+  "dependencies": {
+    "@sap/approuter": "6.1.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "scripts": {
+    "start": "node node_modules/@sap/approuter/approuter.js"
+  }
+}

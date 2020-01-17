@@ -1,0 +1,3 @@
+service namespace "zhimindemo.services"  { 
+   "zhimindemo.db::demo.VEHICLE" as "Vehicle";
+}

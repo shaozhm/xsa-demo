@@ -1,0 +1,61 @@
+ID: zhimindemo
+_schema-version: '2.1'
+version: 1.0.0
+
+modules:
+ - name: zhimin-db
+   type: hdb
+   path: db
+   requires:
+    - name: hdi_db
+
+
+ - name: zhimin-service
+   type: nodejs
+   path: service
+   provides:
+    - name: service_api
+      properties:
+         url: ${default-url}
+   requires:
+    - name: demo-uaa
+    - name: demo-auditlog
+    - name: hdi_db
+    - name: zhimin-db
+
+
+ - name: zhimin-web
+   type: nodejs
+   path: web
+   provides:
+    - name: web
+      properties:
+        ui-url: '${default-url}'
+   parameters:
+    host: zhimin-web
+    service-name: zhimin-web
+    service-url: '${default-url}'
+   requires:
+    - name: demo-uaa
+    - name: service_api
+      group: destinations
+      properties:
+        name: xsjs-backend
+        url: '~{url}'
+        forwardAuthToken: true
+resources:
+ - name: hdi_db
+   parameters:
+      config:
+         schema: ZHIMINDEMO
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
+   
+ - name: demo-uaa
+   type: com.sap.xs.uaa
+   parameters:
+     config-path: ./xs-security.json
+
+ - name: demo-auditlog
+   type: com.sap.xs.auditlog

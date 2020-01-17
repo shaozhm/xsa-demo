@@ -1,0 +1,27 @@
+namespace zhimindemo.db;
+
+context demo {
+    //车辆表
+    entity VEHICLE {
+        key UID                 : Integer;
+            VIN                 : String(20);
+            ENGINE_NO           : String(18);
+            PLATE_NUMBER        : String(20);
+            DOC_NUMBER          : String(18);
+            CARD_ID             : String(18);
+            MODEL               : String(100);
+            MAKER               : String(100);
+            LICENSE_VALID_FROM  : LocalDate;
+            LICENSE_VALID_TO    : LocalDate;
+            OP_CERT_NUMBER      : String(20);
+            OP_CERT_VALID_FROM  : LocalDate;
+            OP_CERT_VALID_TO    : LocalDate;
+            PURCHASE_DATE        : LocalDate;
+            DELETE_FLAG         : String(1) default 0;
+            EFENCE_FLAG         : String(1) default 0;
+    }
+    technical configuration {
+        column store;
+        index VEHICLE_PLATE_NUMBER_INDEX on (PLATE_NUMBER) ;
+    };
+};
