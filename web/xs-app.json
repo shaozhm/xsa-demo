@@ -6,6 +6,5 @@
 			"destination": "xsjs-backend",
 			"authenticationType": "xsuaa"
 		}
-
 	]
 }
